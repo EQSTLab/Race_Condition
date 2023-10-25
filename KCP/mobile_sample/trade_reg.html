@@ -1,0 +1,177 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <title>*** NHN KCP API SAMPLE ***</title>
+    <meta charset="euc-kr">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes, target-densitydpi=medium-dpi">  
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" id="cssLink"/>
+    <script type="text/javascript">
+        function jsf__chk_type()
+        {
+            if ( document.order_info.ActionResult.value == "card" )
+            {
+                document.order_info.pay_method.value = "CARD";
+            }
+            else if ( document.order_info.ActionResult.value == "acnt" )
+            {
+                document.order_info.pay_method.value = "BANK";
+            }
+            else if ( document.order_info.ActionResult.value == "vcnt" )
+            {
+                document.order_info.pay_method.value = "VCNT";
+            }
+            else if ( document.order_info.ActionResult.value == "mobx" )
+            {
+                document.order_info.pay_method.value = "MOBX";
+            }
+            else if ( document.order_info.ActionResult.value == "ocb" )
+            {
+                document.order_info.pay_method.value = "TPNT";
+                document.order_info.van_code.value = "SCSK";
+            }
+            else if ( document.order_info.ActionResult.value == "tpnt" )
+            {
+                document.order_info.pay_method.value = "TPNT";
+                document.order_info.van_code.value = "SCWB";
+            }
+            else if ( document.order_info.ActionResult.value == "scbl" )
+            {
+                document.order_info.pay_method.value = "GIFT";
+                document.order_info.van_code.value = "SCBL";
+            }
+            else if ( document.order_info.ActionResult.value == "sccl" )
+            {
+                document.order_info.pay_method.value = "GIFT";
+                document.order_info.van_code.value = "SCCL";
+            }
+            else if ( document.order_info.ActionResult.value == "schm" )
+            {
+                document.order_info.pay_method.value = "GIFT";
+                document.order_info.van_code.value = "SCHM";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 거래등록 정보 입력 form : order_info -->
+        <form name="order_info" method="post" action="kcp_api_trade_reg.php" >
+
+            <!--
+            ==================================================================
+                1. 거래등록                                                       
+            ------------------------------------------------------------------
+            거래등록에 필요한 정보를 입력 및 설정합니다.                            
+            ------------------------------------------------------------------
+            -->
+            <!-- header -->
+            <div class="header">
+                <a href="../index.html" class="btn-back"><span>뒤로가기</span></a>
+                <h1 class="title">주문/결제 SAMPLE</h1>
+            </div>
+            <!-- //header -->
+            <!-- contents -->
+            <div id="skipCont" class="contents">
+                <p class="txt-type-1">이 페이지는 거래등록을 요청하는 샘플 페이지입니다.</p>
+                <p class="txt-type-2">소스 수정 시 [※ 필수] 또는 [※ 옵션] 표시가 포함된 문장은 가맹점의 상황에 맞게 적절히 수정 적용하시기 바랍니다.</p>
+                <!-- 거래등록 -->
+                <h2 class="title-type-3">거래등록</h2>
+                <ul class="list-type-1">
+                    <!-- 주문번호(ordr_idxx) -->
+                    <li>
+                        <div class="left"><p class="title">주문번호</p></div>
+                        <div class="right">
+                            <div class="ipt-type-1 pc-wd-2">
+                                <input type="text" name="ordr_idxx" value="TEST1234213412" maxlength="40" />
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 상품명(good_name) -->
+                    <li>
+                        <div class="left"><p class="title">상품명</p></div>
+                        <div class="right">
+                            <div class="ipt-type-1 pc-wd-2">
+                                <input type="text" name="good_name" value="운동화" />
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 결제금액(good_mny) - ※ 필수 : 값 설정시 ,(콤마)를 제외한 숫자만 입력하여 주십시오. -->
+                    <li>
+                        <div class="left"><p class="title">상품금액</p></div>
+                        <div class="right">
+                            <div class="ipt-type-1 gap-2 pc-wd-2">
+                                <input type="text" name="good_mny" value="1004" maxlength="9" />
+                                <span class="txt-price">원</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!--
+                ==================================================================
+                            결제 수단 정보 설정                                                        
+                 ------------------------------------------------------------------
+                            결제에 필요한 결제 수단 정보를 설정합니다
+        
+                            신용카드 : CARD, 계좌이체 : BANK, 가상계좌 : VCNT = */
+                            포인트   : TPNT, 휴대폰   : MOBX, 상품권   : GIFT = */
+        
+                           위와 같이 설정한 경우 표준웹에서 설정한 결제수단이 표시됩니다.
+        
+                        ※ 필수
+                KCP에 신청된 결제수단으로만 결제가 가능합니다.
+                ------------------------------------------------------------------
+                -->
+                <h2 class="title-type-3">결제수단</h2>
+                <ul class="list-type-1">
+                    <!-- 결제수단 -->
+                    <li>
+                        <div class="left"><p class="title">결제수단</p></div>
+                        <div class="right">
+                            <div class="ipt-type-1 pc-wd-2">
+                                <select name="ActionResult" onchange="jsf__chk_type();" style="width:100%;height:35px;">
+                                    <option value="" selected>선택하십시오</option>
+                                    <option value="card">신용카드</option>
+                                    <option value="acnt">계좌이체</option>
+                                    <option value="vcnt">가상계좌</option>
+                                    <option value="mobx">휴대폰</option>
+                                    <option value="ocb">OK캐쉬백</option>
+                                    <option value="tpnt">복지포인트</option>
+                                    <option value="scbl">도서상품권</option>
+                                    <option value="sccl">문화상품권</option>
+                                    <option value="schm">해피머니</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                </ul> 
+                <div Class="Line-Type-1"></div>
+                <ul class="list-btn-2">
+                    <li class="pc-only-show"><a href="../index.html" class="btn-type-3 pc-wd-2">뒤로</a></li>
+                    <li><input type="submit" class="submit" value="거래등록"></li> 
+                </ul>
+            </div>
+            <!-- //contents -->
+
+            <!-- footer -->
+            <div class="grid-footer">
+                <div class="inner">
+                    <div class="footer">
+                        ⓒ NHN KCP Corp.
+                    </div>
+                </div>
+            </div>
+            <!--//footer-->
+            <!-- 리턴 URL (kcp와 통신후 결제를 요청할 수 있는 암호화 데이터를 전송 받을 가맹점의 주문페이지 URL) -->
+            <input type="hidden"   name="Ret_URL"         value="http://.../php_kcp_api_pay_sample/mobile_sample/order_mobile.php" />
+            <input type="hidden"   name="user_agent"      value="" /> <!--사용 OS-->
+            <input type="hidden"   name="site_cd"         value="T0000" /> <!--사이트코드-->
+            <!-- 인증시 필요한 파라미터(변경불가)-->
+            <input type="hidden" name="pay_method"      value="">
+            <input type="hidden" name="van_code"        value="">
+        </form>
+    </div>
+    <!--//wrap-->
+</body>
+</html>
