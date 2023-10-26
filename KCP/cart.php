@@ -3,7 +3,7 @@ include ("db.php");
 if(isset($_SESSION['buyr_name'])) {
   $buyr_name = $_SESSION['buyr_name'];
 }else {
-        exit ("<script>alert('login plz.');location.replace('logout_check.php');</script>");
+        exit ("<script>alert('login plz.');location.replace('index.php');</script>");
 }
 ?>
 <!doctype html>
