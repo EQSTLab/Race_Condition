@@ -7,5 +7,5 @@ You can use Xampp for the php code.
 2. Download this code in the "C:\xampp\htdocs" path.
 3. Run the Xampp's "Apache" and "MySQL".
 4. Go to "127.0.0.1/phpmyadmin".
-5. Then import the sql file.
+5. Then import the "shop.sql" file.
 6. Enjoy!
