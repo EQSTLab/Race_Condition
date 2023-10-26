@@ -3,7 +3,7 @@ include ("db.php");
 if(isset($_SESSION['buyr_name'])) {
 /* Some logic for login users */
 }else {
-        exit ("<script>alert('login plz.');location.replace('logout_check.php');</script>");
+        exit ("<script>alert('login plz.');location.replace('index.php');</script>");
 }
 if(isset($_REQUEST['id'])){
   $id = $_REQUEST['id'];
