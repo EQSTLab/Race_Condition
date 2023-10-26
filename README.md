@@ -1,7 +1,7 @@
 # Race_Condition
 Exercise for the race condition attack (Made by. Kim Ji-heun)
 
-# How to run PHP in Windows?
+# How to run this exercise in Windows?
 You can use Xampp for the PHP code.
 1. Install the Xampp
 2. Download this code in the "C:\xampp\htdocs" path.
