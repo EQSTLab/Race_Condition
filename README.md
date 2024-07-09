@@ -9,3 +9,6 @@ You can use Xampp for the PHP code.
 4. Go to "127.0.0.1/phpmyadmin".
 5. Then import the "shop.sql" file.
 6. Enjoy!
+
+# Disclaimer
+The purpose of this project is to help people learn about the Race Condition vulnerability. Do not attack the KCP api server. 
