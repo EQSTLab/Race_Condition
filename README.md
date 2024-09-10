@@ -1,5 +1,5 @@
 # Race_Condition
-Exercise for the race condition attack (Made by. Kim Ji-heun)
+Exercise for the race condition attack 
 
 # How to run this exercise in Windows?
 You can use Xampp for the PHP code.
